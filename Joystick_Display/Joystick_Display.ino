@@ -23,6 +23,19 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   JoystickLesen();
+  LCDPrint();
+  delay(30);
+  lcd.clear();
+
+}
+
+void LCDPrint(){
+  Serial.print("X: ");
+  Serial.print(ValueX);
+  Serial.print(" Y: ");
+  Serial.print(ValueY);
+  Serial.print(" SW: ");
+  Serial.println(ValueSW);
   lcd.setCursor(0,0);
   lcd.print("X: ");
   lcd.print(ValueX);
@@ -32,19 +45,10 @@ void loop() {
   lcd.setCursor(0,2);
   lcd.print("SWITCH: ");
   lcd.print(ValueSW);
-  delay(30);
-  //lcd.clear();
-
 }
 
 void JoystickLesen(){
   ValueX = analogRead(PX);
   ValueY = analogRead(PY);
   ValueSW = digitalRead(PSW) != 1;
-  Serial.print("X: ");
-  Serial.print(ValueX);
-  Serial.print(" Y: ");
-  Serial.print(ValueY);
-  Serial.print(" SW: ");
-  Serial.println(ValueSW);
 }
